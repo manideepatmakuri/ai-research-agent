@@ -1,0 +1,32 @@
+AI Research Agent — Sample Knowledge Base
+
+1. RAG (Retrieval-Augmented Generation)
+RAG combines retrieval with generation. Instead of relying solely on the LLM's training data,
+RAG searches a document store for relevant chunks and passes them as context. This reduces
+hallucinations and allows answering questions about private or recent data.
+
+2. Vector Embeddings
+Text is converted into numerical vectors capturing semantic meaning. Similar concepts produce
+close vectors. This project uses HuggingFace all-MiniLM-L6-v2 for free local embeddings.
+
+3. FAISS (Facebook AI Similarity Search)
+FAISS stores document vectors and enables fast nearest-neighbor search. When queried, the
+question is embedded and FAISS finds the most similar document chunks.
+
+4. BM25 Keyword Search
+BM25 is a classic information retrieval algorithm based on term frequency and inverse document
+frequency. Combined with FAISS semantic search via Reciprocal Rank Fusion, it creates a
+hybrid search that catches both semantic and exact keyword matches.
+
+5. ReAct Pattern
+ReAct (Reasoning + Acting) is an agent pattern where the LLM alternates between thinking
+and using tools. The agent decides what to do, acts, observes results, and repeats.
+
+6. LangChain
+LangChain provides abstractions for chains, agents, memory, tools, and document processing.
+This project uses it to orchestrate the ReAct agent with three tools.
+
+7. Chunking Strategies
+Documents are split into chunks before embedding. Different strategies work better for
+different content: recursive (balanced), by_paragraph (large), by_page (PDF pages),
+small_precise (short exact chunks).
